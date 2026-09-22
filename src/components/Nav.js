@@ -22,6 +22,7 @@ export default function Nav() {
           }}
         >
           <Ionicons
+            key={tab.label}
             name={tab.icon}
             style={[
               global.icon,

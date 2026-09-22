@@ -1,0 +1,75 @@
+import { View, StyleSheet, Pressable, Text } from "react-native";
+
+import { Ionicons } from "@expo/vector-icons";
+import global from "@/styles/global";
+
+const tabs = [
+  { icon: "home-outline", label: "Home" },
+  { icon: "bookmark-outline", label: "Saved" },
+  { icon: "search-outline", label: "Search" },
+  { icon: "timer-outline", label: "Activity" },
+  { icon: "menu-outline", label: "More" },
+] as const;
+
+export type PageName = (typeof tabs)[number]["label"];
+
+type Props = {
+  current: PageName;
+  onNavigate: (page: PageName) => void;
+};
+
+export default function Nav({ current, onNavigate }: Props) {
+  return (
+    <View style={styles.nav}>
+      {tabs.map((tab) => {
+        const isCurrent = tab.label === current;
+        return (
+          <Pressable
+            onPress={() => onNavigate(tab.label)}
+            style={{
+              alignItems: "center",
+            }}
+          >
+            <Ionicons
+              key={tab.label}
+              name={tab.icon}
+              style={[
+                global.icon,
+                isCurrent && styles.current,
+                isCurrent && styles.currentIcon,
+                {
+                  paddingVertical: 5,
+                  paddingHorizontal: 30,
+                  borderRadius: 90,
+                },
+              ]}
+            />
+            <Text
+              style={[isCurrent && styles.current, !isCurrent && global.text]}
+            >
+              {tab.label}
+            </Text>
+          </Pressable>
+        );
+      })}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  nav: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: "6%",
+    paddingVertical: "3%",
+    borderTopWidth: 0.5,
+    borderColor: "#2D3034",
+  },
+  current: {
+    color: "#6699FF",
+  },
+  currentIcon: {
+    backgroundColor: "#253656",
+  },
+});

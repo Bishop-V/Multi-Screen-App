@@ -1,12 +1,21 @@
-import { Text, View, StyleSheet, Image } from "react-native";
-import global from "@/styles/global";
-export default function InfoCard({ info }) {
+import { Text, View, StyleSheet, Image, useColorScheme } from "react-native";
+import { useColorMode } from "@/styles/global";
+
+type Props = {
+  info: string;
+};
+
+export default function InfoCard({ info }: Props) {
+  const isDark = useColorScheme() === "dark";
+  const c = useColorMode();
   return (
-    <View style={styles.card}>
+    <View
+      style={[styles.card, { backgroundColor: isDark ? "#2E3136" : "#EAECF0" }]}
+    >
       <Text
         style={[
-          global.text,
           {
+            color: c.sym,
             flex: 1,
           },
         ]}
@@ -27,7 +36,6 @@ export default function InfoCard({ info }) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#2E3136",
     borderRadius: 30,
     padding: 24,
     gap: 5,

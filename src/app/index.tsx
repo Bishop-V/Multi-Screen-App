@@ -2,19 +2,21 @@ import { useState } from "react";
 import { StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header";
-import Nav from "../components/Nav";
+import Nav, { PageName } from "@/components/Nav";
 import Home from "@/screens/Home";
 import Saved from "@/screens/Saved";
 import Search from "@/screens/Search";
 import Activity from "@/screens/Activity";
 import More from "@/screens/More";
+import { useColorMode } from "@/styles/global";
 export default function Index() {
   const pages = { Home, Saved, Search, Activity, More };
-  const [page, setPage] = useState("Home");
+  const [page, setPage] = useState<PageName>("Home");
   const Page = pages[page];
+  const c = useColorMode();
 
   return (
-    <SafeAreaView style={styles.main}>
+    <SafeAreaView style={[styles.main, { backgroundColor: c.bg }]}>
       <Header />
       <ScrollView key={page}>
         <Page />
@@ -27,6 +29,5 @@ export default function Index() {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: "#202122",
   },
 });

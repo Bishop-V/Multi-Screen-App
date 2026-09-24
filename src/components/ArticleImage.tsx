@@ -1,8 +1,9 @@
 import { View, Image, StyleSheet, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { handlePress } from "@/actions";
-import global from "@/styles/global";
+import global, { useColorMode } from "@/styles/global";
 export default function ArticleImage() {
+  const c = useColorMode();
   return (
     <View style={styles.main}>
       <View style={styles.wrap}>
@@ -11,13 +12,22 @@ export default function ArticleImage() {
           source={require("../assets/featured.jpg")}
         ></Image>
         <View style={styles.actions}>
-          <Pressable onPress={handlePress} style={styles.iconBackground}>
-            <Ionicons name="bookmark-outline" style={global.icon}></Ionicons>
+          <Pressable
+            onPress={handlePress}
+            style={[styles.iconBackground, { backgroundColor: c.bg }]}
+          >
+            <Ionicons
+              name="bookmark-outline"
+              style={[global.icon, { color: c.sym }]}
+            ></Ionicons>
           </Pressable>
-          <Pressable onPress={handlePress} style={styles.iconBackground}>
+          <Pressable
+            onPress={handlePress}
+            style={[styles.iconBackground, { backgroundColor: c.bg }]}
+          >
             <Ionicons
               name="share-social-outline"
-              style={global.icon}
+              style={[global.icon, { color: c.sym }]}
             ></Ionicons>
           </Pressable>
         </View>

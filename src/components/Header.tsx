@@ -1,9 +1,19 @@
-import { View, StyleSheet, Image, Pressable, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Pressable,
+  Text,
+  Appearance,
+  useColorScheme,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import global from "../styles/global";
+import global, { useColorMode } from "../styles/global";
 import { handlePress, handleLongPress } from "../actions";
 
 export default function Header() {
+  const isDark = useColorScheme() === "dark";
+  const c = useColorMode();
   return (
     <View style={styles.header}>
       <View style={styles.row}>
@@ -14,7 +24,7 @@ export default function Header() {
             width: 230,
 
             resizeMode: "contain",
-            tintColor: "white",
+            tintColor: c.sym,
           }}
           source={require("../assets/wordmark.png")}
         />
@@ -22,16 +32,29 @@ export default function Header() {
         <View
           style={{
             flexDirection: "row",
-            gap: 40,
+            gap: 20,
           }}
         >
+          <Pressable
+            onPress={() => Appearance.setColorScheme(isDark ? "light" : "dark")}
+          >
+            {/* light/dark mode switch button */}
+
+            <Ionicons
+              name={isDark ? "moon-outline" : "sunny-outline"}
+              style={[global.icon, { color: c.sym }]}
+            ></Ionicons>
+          </Pressable>
           <Pressable onPress={handlePress}>
-            <Ionicons name="grid-outline" style={global.icon}></Ionicons>
+            <Ionicons
+              name="grid-outline"
+              style={[global.icon, { color: c.sym }]}
+            ></Ionicons>
           </Pressable>
           <Pressable onPress={handlePress}>
             <Ionicons
               name="notifications-outline"
-              style={global.icon}
+              style={[global.icon, { color: c.sym }]}
             ></Ionicons>
           </Pressable>
         </View>
@@ -57,12 +80,15 @@ export default function Header() {
             />
           </Pressable>
           <Pressable onPress={handlePress} onLongPress={handleLongPress}>
-            <Text style={[styles.page, global.text]}>For you</Text>
+            <Text style={[styles.page, { color: c.sym }]}>For you</Text>
           </Pressable>
         </View>
         {/* language */}
         <Pressable onPress={handlePress}>
-          <Ionicons name="language-outline" style={global.icon}></Ionicons>
+          <Ionicons
+            name="language-outline"
+            style={[global.icon, { color: c.sym }]}
+          ></Ionicons>
         </Pressable>
       </View>
     </View>

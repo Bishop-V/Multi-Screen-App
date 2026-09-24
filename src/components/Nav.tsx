@@ -1,7 +1,7 @@
 import { View, StyleSheet, Pressable, Text } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
-import global from "@/styles/global";
+import global, { useColorMode } from "@/styles/global";
 
 const tabs = [
   { icon: "home-outline", label: "Home" },
@@ -19,12 +19,14 @@ type Props = {
 };
 
 export default function Nav({ current, onNavigate }: Props) {
+  const c = useColorMode();
   return (
     <View style={styles.nav}>
       {tabs.map((tab) => {
         const isCurrent = tab.label === current;
         return (
           <Pressable
+            key={tab.label}
             onPress={() => onNavigate(tab.label)}
             style={{
               alignItems: "center",
@@ -35,8 +37,10 @@ export default function Nav({ current, onNavigate }: Props) {
               name={tab.icon}
               style={[
                 global.icon,
-                isCurrent && styles.current,
-                isCurrent && styles.currentIcon,
+                isCurrent
+                  ? [styles.current, styles.currentIcon]
+                  : { color: c.sym },
+
                 {
                   paddingVertical: 5,
                   paddingHorizontal: 30,
@@ -44,9 +48,7 @@ export default function Nav({ current, onNavigate }: Props) {
                 },
               ]}
             />
-            <Text
-              style={[isCurrent && styles.current, !isCurrent && global.text]}
-            >
+            <Text style={[isCurrent ? styles.current : { color: c.sym }]}>
               {tab.label}
             </Text>
           </Pressable>
@@ -70,6 +72,6 @@ const styles = StyleSheet.create({
     color: "#6699FF",
   },
   currentIcon: {
-    backgroundColor: "#253656",
+    backgroundColor: "#6699FF33",
   },
 });

@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Image, useColorScheme } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { useColorMode } from "@/styles/global";
 
 type Props = {
@@ -6,12 +6,9 @@ type Props = {
 };
 
 export default function InfoCard({ info }: Props) {
-  const isDark = useColorScheme() === "dark";
   const c = useColorMode();
   return (
-    <View
-      style={[styles.card, { backgroundColor: isDark ? "#2E3136" : "#EAECF0" }]}
-    >
+    <View style={[styles.card, { backgroundColor: c.card }]}>
       <Text
         style={[
           {
@@ -25,8 +22,8 @@ export default function InfoCard({ info }: Props) {
       <Image
         source={require("../assets/logo.png")}
         style={{
-          height: 60,
-          width: 60,
+          height: 50,
+          width: 50,
           resizeMode: "contain",
         }}
       />
@@ -40,7 +37,6 @@ const styles = StyleSheet.create({
     padding: 24,
     gap: 5,
     marginVertical: "3%",
-    marginHorizontal: "2%",
     alignItems: "center",
     flexDirection: "row",
   },

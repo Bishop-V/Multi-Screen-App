@@ -11,7 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 import global, { useColorMode } from "../styles/global";
 import { handlePress, handleLongPress } from "../actions";
 
-export default function Header() {
+export default function HomeHeader() {
   const isDark = useColorScheme() === "dark";
   const c = useColorMode();
   return (
@@ -21,7 +21,7 @@ export default function Header() {
           style={{
             height: 60,
 
-            width: 230,
+            width: 190,
 
             resizeMode: "contain",
             tintColor: c.sym,
@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "column",
     width: "100%",
-    gap: 20,
     marginVertical: "1%",
     paddingHorizontal: "3%",
   },

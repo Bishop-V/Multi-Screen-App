@@ -1,6 +1,5 @@
 import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "@/components/Header";
 import InfoCard from "@/components/InfoCard";
 import Nav from "@/components/Nav";
 import ArticleImage from "@/components/ArticleImage";

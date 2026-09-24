@@ -43,7 +43,7 @@ export default function Nav({ current, onNavigate }: Props) {
 
                 {
                   paddingVertical: 5,
-                  paddingHorizontal: 30,
+                  paddingHorizontal: 16,
                   borderRadius: 90,
                 },
               ]}
@@ -62,8 +62,10 @@ const styles = StyleSheet.create({
   nav: {
     flexDirection: "row",
     alignItems: "center",
+    alignContent: "center",
     justifyContent: "space-between",
-    paddingHorizontal: "6%",
+    paddingHorizontal: "4%",
+
     paddingVertical: "3%",
     borderTopWidth: 0.5,
     borderColor: "#2D3034",

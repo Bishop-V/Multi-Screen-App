@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
   iconBackground: {
     backgroundColor: "#27292D",
     borderRadius: 999,
-    width: 44,
-    height: 44,
+    width: 37,
+    height: 37,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   main: {
-    paddingHorizontal: "2%",
     marginVertical: "2%",
   },
   actions: {
@@ -62,7 +61,8 @@ const styles = StyleSheet.create({
   image: {
     borderRadius: 25,
     resizeMode: "cover",
+    aspectRatio: 1,
+    height: undefined,
     width: "100%",
-    height: 400,
   },
 });

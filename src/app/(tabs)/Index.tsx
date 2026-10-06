@@ -1,13 +1,11 @@
 import { Text, View, StyleSheet, ScrollView } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import InfoCard from "@/components/InfoCard";
-import Nav from "@/components/Nav";
 import ArticleImage from "@/components/ArticleImage";
 import global, { useColorMode } from "@/styles/global";
-export default function Home() {
+export default function Index() {
   const c = useColorMode();
   return (
-    <View>
+    <ScrollView style={[styles.main, { backgroundColor: c.bg }]}>
       <InfoCard info="Content and resources selected by and about the Wikimedia community" />
 
       <View style={styles.body}>
@@ -21,7 +19,7 @@ export default function Home() {
         </Text>
       </View>
       <ArticleImage />
-    </View>
+    </ScrollView>
   );
 }
 

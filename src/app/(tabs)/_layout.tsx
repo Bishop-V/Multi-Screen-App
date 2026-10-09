@@ -7,7 +7,7 @@ import {
   HomeHeaderRight,
 } from "@/components/header/HomeHeader";
 import { SavedHeaderRight } from "@/components/header/SavedHeader";
-export default function RootLayout() {
+export default function TabLayout() {
   const c = useColorMode();
   return (
     <Tabs

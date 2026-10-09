@@ -2,7 +2,12 @@ import { useColorMode } from "@/styles/global";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, View, Text } from "react-native";
 import global from "@/styles/global";
-export default function SearchPageBar() {
+
+type Props = {
+  showMic?: boolean;
+};
+
+export default function SearchPageBar({ showMic = true }: Props) {
   const c = useColorMode();
 
   return (
@@ -20,7 +25,9 @@ export default function SearchPageBar() {
         <Text style={[global.text, { color: c.sym }]}>Search Wikipedia</Text>
       </View>
 
-      <Ionicons name="mic" style={[global.icon, { color: c.sym }]}></Ionicons>
+      {showMic && (
+        <Ionicons name="mic" style={[global.icon, { color: c.sym }]}></Ionicons>
+      )}
     </View>
   );
 }

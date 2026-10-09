@@ -2,7 +2,12 @@ import { useColorMode } from "@/styles/global";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, View, Text } from "react-native";
 import global from "@/styles/global";
-export default function SearchPageNoUser() {
+type Props = {
+  title: string;
+  text: string;
+};
+
+export default function SearchPageNoUser({ title, text }: Props) {
   const c = useColorMode();
 
   return (
@@ -12,11 +17,9 @@ export default function SearchPageNoUser() {
         style={[global.iconExtraLarge, { color: c.sym }]}
       ></Ionicons>
       <Text style={[global.text, global.title2, { color: c.sym }]}>
-        No recently viewed articles
+        {title}
       </Text>
-      <Text style={[global.text, { color: c.sym }]}>
-        Track what you've been reading here.
-      </Text>
+      <Text style={[global.text, { color: c.sym }]}>{text}</Text>
     </View>
   );
 }

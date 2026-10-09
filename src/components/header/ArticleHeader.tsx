@@ -1,6 +1,6 @@
 import { StyleSheet, View, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import ArticlePageBar from "../ArticlePageBar";
+import SearchPageBar from "../SearchPageBar";
 import { router } from "expo-router";
 import global, { useColorMode } from "@/styles/global";
 
@@ -12,7 +12,7 @@ export function ArticleHeader() {
         <Ionicons name="arrow-back" style={[global.icon, { color: c.sym }]} />
       </Pressable>
       <View style={styles.search}>
-        <ArticlePageBar />
+        <SearchPageBar showMic={false} />
       </View>
       <Ionicons
         name="grid-outline"

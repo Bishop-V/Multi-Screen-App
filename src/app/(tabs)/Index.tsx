@@ -41,7 +41,11 @@ export default function Index() {
             Wikipedia, selected daily by editors
           </Text>
         </View>
-        <ArticleImage />
+        <ArticleImage
+          title="Sinking of the Virgo Transport 8"
+          subtitle="2026 ferry disaster in Indonesia"
+          summary="On 13 September 2026, the Indonesian-flagged ferry Virgo Transport 8 capsized and sank in the Java Sea. The ferry was travelling from Surabaya, East Java to Banjarmasin, South Kalimantan, carrying 243 people and 89 vehicles."
+        />
       </ScrollView>
     </View>
   );

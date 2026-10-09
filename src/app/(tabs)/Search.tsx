@@ -15,7 +15,10 @@ export default function Search() {
         </Text>
       </View>
       <View style={styles.center}>
-        <SearchPageNoUser />
+        <SearchPageNoUser
+          title="No recently viewed articles"
+          text="Track what you've been reading here."
+        />
       </View>
     </View>
   );

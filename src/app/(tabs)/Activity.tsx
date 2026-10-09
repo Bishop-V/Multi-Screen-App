@@ -1,21 +1,11 @@
-import { Text, View, StyleSheet, ScrollView } from "react-native";
-import global, { useColorMode } from "@/styles/global";
+import { View, StyleSheet } from "react-native";
+import { useColorMode } from "@/styles/global";
 export default function Activity() {
   const c = useColorMode();
-  return (
-    <ScrollView style={[styles.main, { backgroundColor: c.bg }]}>
-      <View style={styles.body}>
-        <Text style={[global.text]}>WIP</Text>
-      </View>
-    </ScrollView>
-  );
+  return <View style={[styles.main, { backgroundColor: c.bg }]} />;
 }
 
 const styles = StyleSheet.create({
-  body: {
-    flex: 2,
-    marginHorizontal: "2%",
-  },
   main: {
     flex: 1,
   },

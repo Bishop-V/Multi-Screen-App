@@ -3,7 +3,13 @@ import { Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { handlePress } from "@/actions";
 import global, { useColorMode } from "@/styles/global";
-export default function ArticleImage() {
+type Props = {
+  title: string;
+  subtitle: string;
+  summary: string;
+};
+
+export default function ArticleImage({ title, subtitle, summary }: Props) {
   const c = useColorMode();
   return (
     <View style={styles.main}>
@@ -33,18 +39,11 @@ export default function ArticleImage() {
               ></Ionicons>
             </Pressable>
           </View>
-          <View style={[styles.ArticleBrief, { backgroundColor: c.bgTrans }]}>
-            <Text style={[global.title2, { color: c.sym }]}>
-              Sinking of the Virgo Transport 8
-            </Text>
-            <Text style={[global.date, { color: c.sym }]}>
-              2026 ferry disaster in Indonesia
-            </Text>
+          <View style={[styles.articleBrief, { backgroundColor: c.bgTrans }]}>
+            <Text style={[global.title2, { color: c.sym }]}>{title}</Text>
+            <Text style={[global.date, { color: c.sym }]}>{subtitle}</Text>
             <Text style={[global.text, { color: c.sym }]} numberOfLines={4}>
-              On 13 September 2026, the Indonesian-flagged ferry Virgo Transport
-              8 capsized and sank in the Java Sea. The ferry was travelling from
-              Surabaya, East Java to Banjarmasin, South Kalimantan, carrying 243
-              people and 89 vehicles.
+              {summary}
             </Text>
           </View>
         </Pressable>
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
     right: 20,
     gap: 20,
   },
-  ArticleBrief: {
+  articleBrief: {
     position: "absolute",
     left: 12,
     right: 12,

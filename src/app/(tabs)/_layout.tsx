@@ -1,76 +1,51 @@
-import {
-  Image,
-  View,
-  useColorScheme,
-  Pressable,
-  Appearance,
-  StyleSheet,
-} from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Tabs } from "expo-router";
-import global, { useColorMode } from "@/styles/global";
+import global, { theme, useColorMode } from "@/styles/global";
 import { Ionicons } from "@expo/vector-icons";
+import {
+  HomeHeaderTitle,
+  HomeHeaderRight,
+} from "@/components/header/HomeHeader";
+import { SavedHeaderRight } from "@/components/header/SavedHeader";
 export default function RootLayout() {
   const c = useColorMode();
-  const isDark = useColorScheme() === "dark";
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#6699FF",
+        tabBarActiveTintColor: theme.select,
+
         tabBarInactiveTintColor: c.sym,
+        headerStatusBarHeight: 20,
+        headerShadowVisible: false,
         tabBarStyle: {
           backgroundColor: c.bg,
+          borderTopWidth: 0.2,
+          justifyContent: "center",
+          height: 75,
         },
         headerStyle: { backgroundColor: c.bg },
+        sceneStyle: { paddingHorizontal: 16, backgroundColor: c.bg },
+        headerTitleStyle: {
+          color: c.sym,
+        },
       }}
     >
       <Tabs.Screen
         name="Index"
         options={{
-          headerTitle: () => (
-            <Image
-              style={[
-                styles.homeWordmark,
-                {
-                  tintColor: c.sym,
-                },
-              ]}
-              source={require("../../assets/wordmark.png")}
-            />
-          ),
-          headerRight: () => (
-            <View style={styles.homeIconView}>
-              <Pressable
-                onPress={() =>
-                  Appearance.setColorScheme(isDark ? "light" : "dark")
-                }
-              >
-                {/* light/dark mode switch button */}
+          title: "Home",
+          headerTitle: () => <HomeHeaderTitle />,
 
-                <Ionicons
-                  name={isDark ? "moon-outline" : "sunny-outline"}
-                  style={[global.icon, { color: c.sym }]}
-                ></Ionicons>
-              </Pressable>
-              <Pressable>
-                <Ionicons
-                  name="grid-outline"
-                  style={[global.icon, { color: c.sym }]}
-                ></Ionicons>
-              </Pressable>
-              <Pressable>
-                <Ionicons
-                  name="notifications-outline"
-                  style={[global.icon, { color: c.sym }]}
-                ></Ionicons>
-              </Pressable>
-            </View>
-          ),
+          headerRight: () => <HomeHeaderRight />,
+
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "home" : "home-outline"}
-              style={global.icon}
-              color={color}
-            />
+            <View style={[styles.focusPill, focused && styles.focusHighlight]}>
+              <Ionicons
+                name={focused ? "home" : "home-outline"}
+                style={global.icon}
+                color={color}
+              />
+            </View>
           ),
         }}
       />
@@ -78,12 +53,15 @@ export default function RootLayout() {
         name="Saved"
         options={{
           title: "Saved",
+          headerRight: () => <SavedHeaderRight />,
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "bookmark" : "bookmark-outline"}
-              style={global.icon}
-              color={color}
-            />
+            <View style={[styles.focusPill, focused && styles.focusHighlight]}>
+              <Ionicons
+                name={focused ? "bookmark" : "bookmark-outline"}
+                style={global.icon}
+                color={color}
+              />
+            </View>
           ),
         }}
       />
@@ -92,11 +70,13 @@ export default function RootLayout() {
         options={{
           title: "Search",
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "search" : "search-outline"}
-              style={global.icon}
-              color={color}
-            />
+            <View style={[styles.focusPill, focused && styles.focusHighlight]}>
+              <Ionicons
+                name={focused ? "search" : "search-outline"}
+                style={global.icon}
+                color={color}
+              />
+            </View>
           ),
         }}
       />
@@ -105,11 +85,13 @@ export default function RootLayout() {
         options={{
           title: "Activity",
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "timer" : "timer-outline"}
-              style={global.icon}
-              color={color}
-            />
+            <View style={[styles.focusPill, focused && styles.focusHighlight]}>
+              <Ionicons
+                name={focused ? "timer" : "timer-outline"}
+                style={global.icon}
+                color={color}
+              />
+            </View>
           ),
         }}
       />
@@ -118,11 +100,13 @@ export default function RootLayout() {
         options={{
           title: "More",
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? "menu" : "menu-outline"}
-              style={global.icon}
-              color={color}
-            />
+            <View style={[styles.focusPill, focused && styles.focusHighlight]}>
+              <Ionicons
+                name={focused ? "menu" : "menu-outline"}
+                style={global.icon}
+                color={color}
+              />
+            </View>
           ),
         }}
       />
@@ -131,15 +115,14 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
-  homeWordmark: {
-    height: 60,
-
-    width: 190,
-
-    resizeMode: "contain",
+  focusHighlight: {
+    backgroundColor: theme.selectBG,
   },
-  homeIconView: {
-    flexDirection: "row",
-    gap: 20,
+  focusPill: {
+    width: 60,
+    height: 30,
+    borderRadius: 99,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

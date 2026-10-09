@@ -9,16 +9,7 @@ export default function InfoCard({ info }: Props) {
   const c = useColorMode();
   return (
     <View style={[styles.card, { backgroundColor: c.card }]}>
-      <Text
-        style={[
-          {
-            color: c.sym,
-            flex: 1,
-          },
-        ]}
-      >
-        {info}
-      </Text>
+      <Text style={[styles.cardText, { color: c.sym }]}>{info}</Text>
       <Image
         source={require("../assets/logo.png")}
         style={{
@@ -34,10 +25,14 @@ export default function InfoCard({ info }: Props) {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 30,
-    padding: 24,
+    padding: "4%",
     gap: 5,
-    marginVertical: "3%",
+    marginVertical: "2%",
+
     alignItems: "center",
     flexDirection: "row",
+  },
+  cardText: {
+    flex: 1,
   },
 });
